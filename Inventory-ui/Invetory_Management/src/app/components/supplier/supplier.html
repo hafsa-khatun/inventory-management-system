@@ -1,0 +1,94 @@
+<div class="container mt-4">
+  <!-- Status Alerts -->
+  <div *ngIf="message()" [ngClass]="isError() ? 'alert alert-danger' : 'alert alert-success'" class="alert text-center shadow-sm">
+    {{ message() }}
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="page-title">Supplier Management</h2>
+    <button class="btn-action" [ngClass]="showForm() ? 'btn-close-form' : 'btn-add'" (click)="toggleForm()">
+      {{ showForm() ? 'Close Form' : 'Add New Supplier' }}
+    </button>
+  </div>
+
+  <!-- Entry Form Section -->
+  <div *ngIf="showForm()" class="card-form shadow-md">
+    <div class="card-form-header">
+      <h5 class="mb-0">{{ isEditMode() ? 'Update Supplier Profile' : 'Register New Supplier' }}</h5>
+    </div>
+    <div class="card-form-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label-custom">Supplier Name *</label>
+            <input type="text" class="form-control-custom" [ngModel]="supplier().supplierName" 
+                   (ngModelChange)="supplier.set({...supplier(), supplierName: $event})" name="supplierName" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label-custom">Phone Number</label>
+            <input type="text" class="form-control-custom" [ngModel]="supplier().phone" 
+                   (ngModelChange)="supplier.set({...supplier(), phone: $event})" name="phone">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label class="form-label-custom">Email Address</label>
+            <input type="email" class="form-control-custom" [ngModel]="supplier().email" 
+                   (ngModelChange)="supplier.set({...supplier(), email: $event})" name="email">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label-custom">Business Address</label>
+          <textarea class="form-control-custom" rows="2" [ngModel]="supplier().address" 
+                    (ngModelChange)="supplier.set({...supplier(), address: $event})" name="address"></textarea>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="button" class="btn-submit" (click)="onSubmit()">{{ isEditMode() ? 'Update Records' : 'Save Supplier' }}</button>
+          <button type="button" class="btn-cancel" (click)="resetForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dynamic Data View Grid Table -->
+  <div class="card-table shadow-sm">
+    <div class="card-table-header">
+      <h5 class="mb-0">Supplier Index Directives</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th style="width: 8%">ID</th>
+            <th style="width: 25%">Supplier Name</th>
+            <th style="width: 17%">Phone</th>
+            <th style="width: 20%">Email</th>
+            <th style="width: 15%">Address</th>
+            <th style="width: 15%" class="text-center">Action Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of supplierList()">
+            <td><span class="badge-id">#{{ item.id }}</span></td>
+            <td><strong>{{ item.supplierName }}</strong></td>
+            <td>{{ item.phone || 'N/A' }}</td>
+            <td><span class="text-email">{{ item.email || 'N/A' }}</span></td>
+            <td>{{ item.address || 'N/A' }}</td>
+            <td class="text-center">
+              <div class="action-btn-group">
+                <button class="btn-edit" (click)="onEdit(item)">Edit</button>
+                <button class="btn-delete" (click)="onDelete(item.id!)">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="supplierList().length === 0">
+            <td colspan="6" class="table-empty">No active supplier accounts tracked. Add registry mapping profiles.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+$navy: #1e293b;
+$accent: #4f46e5;
+$bg-soft: #f8fafc;
+
+.user-management-container {
+  background-color: $bg-soft;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .text-navy { color: $navy; }
+  
+  .text-gradient {
+    background: linear-gradient(45deg, $navy, $accent);
+
+    -webkit-text-fill-color: transparent;
+  }
+
+  .card {
+    border-radius: 16px;
+    background: #ffffff;
+  }
+
+  .input-group-text {
+    background-color: transparent;
+    border-right: none;
+    color: #94a3b8;
+  }
+
+  .form-control, .form-select {
+    border-left: none;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    &:focus {
+      border-color: #cbd5e1;
+      box-shadow: none;
+    }
+  }
+
+  .btn-action {
+    background: linear-gradient(135deg, $accent, #3b82f6);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+  }
+
+  // Table Customizations
+  .custom-table {
+    thead th {
+      background-color: #f1f5f9;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 14px;
+      border: none;
+    }
+    tbody tr {
+      border-bottom: 1px solid #f1f5f9;
+      &:hover { background-color: #fafafa; }
+    }
+    td { padding: 16px 14px; }
+  }
+
+  .avatar-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #e2e8f0;
+    color: $navy;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Soft Badges Colors
+  .bg-soft-danger { background-color: #fee2e2; }
+  .bg-soft-warning { background-color: #fef3c7; }
+  .bg-soft-success { background-color: #dcfce7; }
+  .bg-soft-navy { background-color: #e2e8f0; }
+
+  // Action Buttons Outlines
+  .btn-outline-edit {
+    color: #3b82f6;
+    border-color: #bfdbfe;
+    &:hover { background-color: #3b82f6; color: white; }
+  }
+  .btn-outline-trash {
+    color: #ef4444;
+    border-color: #fca5a5;
+    &:hover { background-color: #ef4444; color: white; }
+  }
+}

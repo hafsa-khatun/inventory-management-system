@@ -1,0 +1,109 @@
+<div class="container py-4">
+  
+  <!-- Header with Live Update Time -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h3 class="fw-bold text-dark mb-0">System Live Dashboard</h3>
+      <p class="text-muted small mb-0">Auto updating in real time summary</p>
+    </div>
+    <div class="d-flex align-items-center gap-2 bg-white px-3 py-2 rounded-pill shadow-sm border">
+      <span class="pulse-dot"></span>
+      <small class="text-secondary fw-semibold">
+        Live Auto-Sync • Last Sync: {{ lastUpdated() | date:'hh:mm:ss a' }}
+      </small>
+    </div>
+  </div>
+
+  <!-- Real-time Stats Cards Grid -->
+  <div class="row g-3 mb-4">
+    
+    <!-- Total Products Card -->
+    <div class="col-md-3">
+      <div class="card stat-card border-0 shadow-sm p-3 border-start border-4 border-info">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted small fw-bold text-uppercase">Total Products</span>
+            <h3 class="fw-bold text-dark mt-1 mb-0">{{ totalProducts() }}</h3>
+          </div>
+          <div class="stat-icon bg-info-subtle text-info">📦</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Categories Card -->
+    <div class="col-md-3">
+      <div class="card stat-card border-0 shadow-sm p-3 border-start border-4 border-warning">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted small fw-bold text-uppercase">Categories</span>
+            <h3 class="fw-bold text-dark mt-1 mb-0">{{ totalCategories() }}</h3>
+          </div>
+          <div class="stat-icon bg-warning-subtle text-warning">🏷️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Suppliers Card -->
+    <div class="col-md-3">
+      <div class="card stat-card border-0 shadow-sm p-3 border-start border-4 border-secondary">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted small fw-bold text-uppercase">Suppliers</span>
+            <h3 class="fw-bold text-dark mt-1 mb-0">{{ totalSuppliers() }}</h3>
+          </div>
+          <div class="stat-icon bg-secondary-subtle text-secondary">🚚</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Revenue Card -->
+    <div class="col-md-3">
+      <div class="card stat-card border-0 shadow-sm p-3 border-start border-4 border-success">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted small fw-bold text-uppercase">Total Sales Revenue</span>
+            <h3 class="fw-bold text-dark mt-1 mb-0">৳{{ totalRevenue() | number:'1.2-2' }}</h3>
+          </div>
+          <div class="stat-icon bg-success-subtle text-success">💰</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Recent Sales Table Auto Updates -->
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+      <h5 class="fw-bold text-dark m-0">Recent Invoices (Auto-Refreshed)</h5>
+      <span class="badge bg-success-subtle text-success border border-success-subtle">
+        Total Orders: {{ totalSalesCount() }}
+      </span>
+    </div>
+    <div class="card-body p-4">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Invoice ID</th>
+              <th>Date</th>
+              <th>Total Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sale of recentSales()">
+              <td><span class="badge bg-secondary">#{{ sale.id }}</span></td>
+              <td>{{ sale.saleDate | date:'medium' }}</td>
+              <td class="fw-bold text-dark">৳{{ sale.totalAmount }}</td>
+              <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+            <tr *ngIf="recentSales().length === 0">
+              <td colspan="4" class="text-center text-muted py-4">No recent sales records found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

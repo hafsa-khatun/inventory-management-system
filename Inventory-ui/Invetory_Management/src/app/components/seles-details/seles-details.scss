@@ -1,0 +1,146 @@
+// sale-detail.component.scss
+
+// Variables
+$primary-color: #4f46e5;
+$primary-hover: #4338ca;
+$bg-light-card: #f8fafc;
+$border-color: #e2e8f0;
+$text-dark: #0f172a;
+$text-muted: #64748b;
+$shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+$shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+.container {
+  max-width: 1200px;
+}
+
+// Card Customization
+.card {
+  border: 1px solid $border-color !important;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    box-shadow: $shadow-hover !important;
+  }
+
+  .card-header {
+    h5 {
+      color: $text-dark;
+      letter-spacing: -0.2px;
+    }
+  }
+}
+
+// Form Custom Focus & Style
+.form-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.form-select,
+.form-control {
+  font-size: 0.925rem;
+  padding: 0.625rem 0.875rem;
+  color: $text-dark;
+  background-color: #ffffff;
+  border-color: $border-color;
+  transition: all 0.2s ease;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 4px rgba($primary-color, 0.12);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+}
+
+// Calculated Subtotal Box Styling
+.bg-light {
+  background-color: $bg-light-card !important;
+  border: 1px dashed #cbd5e1;
+}
+
+// Primary Button Styling
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba($primary-color, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Table Styling
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table {
+  margin-bottom: 0;
+
+  thead th {
+    background-color: $bg-light-card;
+    color: $text-muted;
+    font-size: 0.775rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid $border-color;
+    padding: 0.875rem 1rem;
+  }
+
+  tbody td {
+    padding: 0.95rem 1rem;
+    color: #334155;
+    border-bottom: 1px solid $border-color;
+    font-size: 0.9rem;
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: #f1f5f9;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// Badge Styling
+.badge {
+  font-weight: 500;
+  padding: 0.4em 0.7em;
+  font-size: 0.75rem;
+}
+
+// Action Button Styling
+.btn-outline-danger {
+  color: #ef4444;
+  background-color: #fef2f2;
+  font-size: 0.825rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+  }
+}

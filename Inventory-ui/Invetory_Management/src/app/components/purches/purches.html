@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="card border-0 shadow-sm rounded-3" style="max-width: 600px; margin: 0 auto;">
+    
+    <!-- Header -->
+    <div class="card-header border-0 p-4 text-white rounded-top-3" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+      <h4 class="mb-1 fw-bold">Add New Purchase Record</h4>
+      <p class="mb-0 text-white-50 small">Enter details to update real-time stock and accounts</p>
+    </div>
+
+    <!-- Form Body -->
+    <div class="card-body p-4 bg-white">
+      <form (ngSubmit)="onSubmit()">
+        
+        <!-- Supplier Selection -->
+        <div class="mb-3">
+          <label for="supplier" class="form-label fw-semibold text-secondary small">Select Supplier *</label>
+          <select 
+            id="supplier" 
+            class="form-select form-select-lg border-2 border-light-subtle rounded-3"
+            [ngModel]="supplierId()" 
+            (ngModelChange)="supplierId.set($event)"
+            name="supplierId" 
+            required>
+            <option [value]="null" disabled selected>-- Choose a Supplier --</option>
+            <option *ngFor="let supplier of suppliers()" [value]="supplier.id">
+              {{ supplier.supplierName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Total Amount Field -->
+        <div class="mb-4">
+          <label for="amount" class="form-label fw-semibold text-secondary small">Total Invoice Amount ($) *</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-text bg-light border-2 border-light-subtle rounded-start-3">$</span>
+            <input 
+              type="number" 
+              id="amount" 
+              class="form-control border-2 border-light-subtle rounded-end-3" 
+              placeholder="0.00"
+              [ngModel]="totalAmount()"
+              (ngModelChange)="totalAmount.set($event)"
+              name="totalAmount" 
+              required>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-lg text-white border-0 fw-bold rounded-3 shadow-sm py-3 transition-all"
+                  style="background: linear-gradient(135deg, #1e3c72, #2a5298);">
+            💾 Save Purchase Entry
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

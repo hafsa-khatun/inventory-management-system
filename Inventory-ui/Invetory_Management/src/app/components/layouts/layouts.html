@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow px-4 py-3">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-info" routerLink="/dashboard">
+      <i class="fas fa-cubes me-2"></i>Admin Dashboard
+    </a>
+
+    <!-- Toggle Button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Menu -->
+      <ul class="navbar-nav me-auto">
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/dashboard"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <i class="fas fa-chart-line me-1"></i> Dashboard
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            <i class="fas fa-users-cog me-1"></i> User Management
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/catagori" routerLinkActive="active">
+            <i class="fas fa-list me-1"></i> Category
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/customer" routerLinkActive="active">
+            <i class="fas fa-user me-1"></i> Customer
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products" routerLinkActive="active">
+            <i class="fas fa-box me-1"></i> Products
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/purches" routerLinkActive="active">
+            <i class="fas fa-shopping-cart me-1"></i> Purchase
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/purches-detail" routerLinkActive="active">
+            <i class="fas fa-file-invoice me-1"></i> Purchase Details
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/seles" routerLinkActive="active">
+            <i class="fas fa-cash-register me-1"></i> Sales
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/seles-details" routerLinkActive="active">
+            <i class="fas fa-receipt me-1"></i> Sales Details
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/supplier" routerLinkActive="active">
+            <i class="fas fa-truck me-1"></i> Supplier
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- Right Side -->
+      <div class="d-flex align-items-center">
+        <button
+          class="btn btn-outline-danger btn-sm rounded-pill px-3"
+          (click)="onLogout()">
+          <i class="fas fa-sign-out-alt me-1"></i> Logout
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid p-4">
+  <router-outlet></router-outlet>
+</div>

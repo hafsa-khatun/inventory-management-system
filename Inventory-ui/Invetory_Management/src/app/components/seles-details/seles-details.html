@@ -1,0 +1,139 @@
+<div class="container py-4">
+  <div class="row g-4">
+
+   
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+          <h5 class="fw-bold text-dark m-0">Add Sale Detail</h5>
+          <p class="text-muted small">Add Sales Item Details</p>
+        </div>
+        <div class="card-body p-4 bg-white">
+          <form (ngSubmit)="onSubmit()">
+
+            <!-- Select Sale Invoice -->
+            <div class="mb-3">
+              <label for="sale" class="form-label fw-semibold text-secondary small">Select Sale Invoice *</label>
+              <select 
+                id="sale" 
+                class="form-select border-2 border-light-subtle rounded-3"
+                [ngModel]="selectedSaleId()" 
+                (ngModelChange)="selectedSaleId.set($event)"
+                name="selectedSaleId" 
+                required>
+                <option [ngValue]="null" disabled selected>-- Choose Sale --</option>
+                <option *ngFor="let s of salesList()" [value]="s.id">
+                  Sale #{{ s.id }} (৳{{ s.totalAmount }})
+                </option>
+              </select>
+            </div>
+
+            <!-- Select Product -->
+            <div class="mb-3">
+              <label for="product" class="form-label fw-semibold text-secondary small">Select Product *</label>
+              <select 
+                id="product" 
+                class="form-select border-2 border-light-subtle rounded-3"
+                [ngModel]="selectedProductId()" 
+                (ngModelChange)="selectedProductId.set($event)"
+                name="selectedProductId" 
+                required>
+                <option [ngValue]="null" disabled selected>-- Choose Product --</option>
+                <option *ngFor="let p of productList()" [value]="p.id">
+                  {{ p.productName || 'Product #' + p.id }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-3">
+              <label for="quantity" class="form-label fw-semibold text-secondary small">Quantity *</label>
+              <input 
+                type="number" 
+                id="quantity" 
+                class="form-control border-2 border-light-subtle rounded-3"
+                [ngModel]="quantity()" 
+                (ngModelChange)="quantity.set($event)"
+                name="quantity" 
+                placeholder="e.g. 5" 
+                required 
+                min="1">
+            </div>
+
+            <!-- Unit Price -->
+            <div class="mb-3">
+              <label for="unitPrice" class="form-label fw-semibold text-secondary small">Unit Price (৳) *</label>
+              <input 
+                type="number" 
+                id="unitPrice" 
+                class="form-control border-2 border-light-subtle rounded-3"
+                [ngModel]="unitPrice()" 
+                (ngModelChange)="unitPrice.set($event)"
+                name="unitPrice" 
+                placeholder="e.g. 100" 
+                required 
+                min="0">
+            </div>
+
+            <!-- Calculated Subtotal Preview -->
+            <div class="mb-3 p-3 bg-light rounded-3 text-end">
+              <span class="text-muted small d-block">Subtotal:</span>
+              <strong class="fs-5 text-primary">৳{{ calculatedSubtotal() }}</strong>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-semibold mt-2">
+              Save Item
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+          <h5 class="fw-bold text-dark m-0">Sale Details List</h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>#ID</th>
+                  <th>Sale ID</th>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th>Subtotal</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of saleDetailsList()">
+                  <td>#{{ item.id }}</td>
+                  <td><span class="badge bg-secondary">Sale #{{ item.sale?.id }}</span></td>
+                 <td class="fw-semibold text-dark">
+                {{ $any(item.product)?.productName || 'Product #' + item.product?.id }}
+                 </td>
+                  <td>{{ item.quantity }}</td>
+                  <td>৳{{ item.unitPrice }}</td>
+                  <td class="fw-bold text-success">৳{{ item.subtotal }}</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-outline-danger border-0" (click)="onDelete(item.id)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="saleDetailsList().length === 0">
+                  <td colspan="7" class="text-center text-muted py-4">No sale details records found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
